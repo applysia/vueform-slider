@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 
-module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
+module.exports = plugin(({ theme, addBase, addVariant, addUtilities }) => {
   const plain = {
     '.slider-txt-rtl': {},
     '.cursor-grab': {
@@ -34,7 +34,7 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
     '.cursor-ew-resize': {
       cursor: 'ew-resize',
     },
-    [`.slider-vertical .${e('v:cursor-ns-resize')}`]: {
+    [`.slider-vertical .${'v:cursor-ns-resize'}`]: {
       cursor: 'ns-resize',
     },
   }
@@ -103,49 +103,49 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal .${e(`h${separator}${className}`)}`
+      return `.slider-horizontal .${`h${separator}${className}`}`
     })
   })
 
   addVariant('v', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-vertical .${e(`v${separator}${className}`)}`
+      return `.slider-vertical .${`v${separator}${className}`}`
     })
   })
 
   addVariant('merge-h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal .slider-origin > .${e(`merge-h${separator}${className}`)}`
+      return `.slider-horizontal .slider-origin > .${`merge-h${separator}${className}`}`
     })
   })
 
   addVariant('merge-v', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-vertical .slider-origin > .${e(`merge-v${separator}${className}`)}`
+      return `.slider-vertical .slider-origin > .${`merge-v${separator}${className}`}`
     })
   })
 
   addVariant('txt-rtl-h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal.slider-txt-rtl .${e(`txt-rtl-h${separator}${className}`)}`
+      return `.slider-horizontal.slider-txt-rtl .${`txt-rtl-h${separator}${className}`}`
     })
   })
 
   addVariant('tap', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-tap .${e(`tap${separator}${className}`)}`
+      return `.slider-tap .${`tap${separator}${className}`}`
     })
   })
 
   addVariant('slider-disabled', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `[disabled] .${e(`slider-disabled${separator}${className}`)}`
+      return `[disabled] .${`slider-disabled${separator}${className}`}`
     })
   })
 
   addVariant('tt-focus', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .${e(`tt-focus${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .${`tt-focus${separator}${rule.selector.slice(1)}`}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -154,7 +154,7 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
 
   addVariant('tt-focused', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus.slider-focused:not(.slider-tooltip-hidden) .${e(`tt-focused${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `.slider-tooltip-focus.slider-focused:not(.slider-tooltip-hidden) .${`tt-focused${separator}${rule.selector.slice(1)}`}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -163,7 +163,7 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
 
   addVariant('tt-drag', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .${e(`tt-drag${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .${`tt-drag${separator}${rule.selector.slice(1)}`}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -172,8 +172,8 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
 
   addVariant('tt-dragging', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-drag.slider-state-drag .${e(`tt-dragging${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)},
-                        .slider-tooltip-drag .slider-active .${e(`tt-dragging${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `.slider-tooltip-drag.slider-state-drag .${`tt-dragging${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`},
+                        .slider-tooltip-drag .slider-active .${`tt-dragging${separator}${rule.selector.slice(1)}`}`
       rule.walkDecls(decl => {
         decl.important = true
       })
