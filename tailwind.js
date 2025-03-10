@@ -180,20 +180,6 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities, e }) => {
     })
   })
 }, {
-  variants: {
-    extend: {
-      backgroundColor: ['disabled'],
-      cursor: ['disabled'],
-      borderColor: ['disabled'],
-      height: ['h', 'v'],
-      width: ['h', 'v'],
-      inset: ['h', 'v', 'txt-rtl-h', 'merge-h', 'merge-v'],
-      translate: ['h', 'v', 'merge-h', 'merge-v'],
-      transitionProperty: ['tap'],
-      transitionDuration: ['tap'],
-      display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging']
-    }
-  },
   theme: {
     extend: {
       zIndex: {
