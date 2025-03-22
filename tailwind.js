@@ -101,85 +101,57 @@ module.exports = plugin(({ theme, addBase, addVariant, addUtilities }) => {
   addUtilities(h, ['h'])
   addUtilities(v, ['v'])
 
-  addVariant('h', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.slider-horizontal .${`h${separator}${className}`}`
-    })
-  })
+  addVariant('h', '.slider-horizontal &')
+  
+  addVariant('v', '.slider-vertical &')
+  
+  addVariant('merge-h', '.slider-horizontal .slider-origin > &')
+  
+  addVariant('merge-v', '.slider-vertical .slider-origin > &')
+  
+  addVariant('txt-rtl-h', '.slider-horizontal.slider-txt-rtl &')
+  
+  addVariant('tap', '.slider-tap &')
+  
+  addVariant('slider-disabled', '[disabled] &')
 
-  addVariant('v', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.slider-vertical .${`v${separator}${className}`}`
-    })
-  })
-
-  addVariant('merge-h', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.slider-horizontal .slider-origin > .${`merge-h${separator}${className}`}`
-    })
-  })
-
-  addVariant('merge-v', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.slider-vertical .slider-origin > .${`merge-v${separator}${className}`}`
-    })
-  })
-
-  addVariant('txt-rtl-h', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.slider-horizontal.slider-txt-rtl .${`txt-rtl-h${separator}${className}`}`
-    })
-  })
-
-  addVariant('tap', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.slider-tap .${`tap${separator}${className}`}`
-    })
-  })
-
-  addVariant('slider-disabled', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `[disabled] .${`slider-disabled${separator}${className}`}`
-    })
-  })
-
-  addVariant('tt-focus', ({ container, separator }) => {
+  addVariant('tt-focus', ({ container }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .${`tt-focus${separator}${rule.selector.slice(1)}`}`
+      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .tt-focus\\:${rule.selector.slice(1)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
     })
   })
 
-  addVariant('tt-focused', ({ container, separator }) => {
+  addVariant('tt-focused', ({ container }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus.slider-focused:not(.slider-tooltip-hidden) .${`tt-focused${separator}${rule.selector.slice(1)}`}`
+      rule.selector = `.slider-tooltip-focus.slider-focused:not(.slider-tooltip-hidden) .tt-focused\\:${rule.selector.slice(1)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
     })
   })
 
-  addVariant('tt-drag', ({ container, separator }) => {
+  addVariant('tt-drag', ({ container }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .${`tt-drag${separator}${rule.selector.slice(1)}`}`
+      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .tt-drag\\:${rule.selector.slice(1)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
     })
   })
 
-  addVariant('tt-dragging', ({ container, separator }) => {
+  addVariant('tt-dragging', ({ container }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-drag.slider-state-drag .${`tt-dragging${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`},
-                        .slider-tooltip-drag .slider-active .${`tt-dragging${separator}${rule.selector.slice(1)}`}`
+      rule.selector = `.slider-tooltip-drag.slider-state-drag .tt-dragging\\:${rule.selector.slice(1)}:not(.slider-tooltip-hidden),
+                      .slider-tooltip-drag .slider-active .tt-dragging\\:${rule.selector.slice(1)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
     })
   })
-}, {
+},{
   theme: {
     extend: {
       zIndex: {
